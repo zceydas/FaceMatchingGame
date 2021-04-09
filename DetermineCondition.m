@@ -5,7 +5,7 @@ namestr = st.name;
 directory=fileparts(which([namestr, '.m']));
 cd(directory)
 addpath(directory) % set path to necessary files
-
+endGame=0;
 subjectId=input('What is subject ID?');
 Session=input('What is study session? Test(1), ReTest(2): '); % this can be 1 or 2 (test and re-test)
 simulation=input('Is this a simulation? Yes(1), No(0): '); % this can be 1 or 2 (test and re-test)
@@ -28,7 +28,7 @@ KbName('UnifyKeyNames')
 KeyTemp=KbName('KeyNames');
 rightkey = KbName('RightArrow');%'RightArrow';
 leftkey = KbName('LeftArrow');%LeftArrow';
-endcode =  find(strcmp(KeyTemp, 'ESCAPE' )); %escape key - if you press Escape during the experiment, study will pause until next key stroke
+endcode =  KbName('ESCAPE'); %escape key - if you press Escape during the experiment, study will pause until next key stroke
 Screen('Preference', 'SkipSyncTests', 1)
 % Get the screen numbers
 screens = Screen('Screens');
@@ -62,7 +62,7 @@ for trialNo=1:length(ConditionOrder(1,:))
     Content=ConditionList.ContentType(find(ConditionList.Condition==ConditionOrder(1,trialNo)),:); % only 1 target or with 1 distractor
     Match=ConditionList.MatchType(find(ConditionList.Condition==ConditionOrder(1,trialNo)),:); % whether the target matches the probe or not
     TargetSide=ConditionList.TargetSide(find(ConditionList.Condition==ConditionOrder(1,trialNo)),:); % 1 and 2 target top, 3 and 4 target bottom
-    [Accuracy,RT,ImageList]=DetermineTargetSide(Content,TargetSide,Match,EmotionType,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation);
+    [Accuracy,RT,ImageList,endGame]=DetermineTargetSide(Content,TargetSide,Match,EmotionType,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation);
     
     % organize results
     Results(trialNo,1)=EmotionType; 
@@ -73,6 +73,11 @@ for trialNo=1:length(ConditionOrder(1,:))
     Results(trialNo,6)=RT;
     
     for l=1:length(ImageList);AllImages{trialNo,l}=ImageList{l};end
+    
+    if endGame == 1
+        
+        break
+    end
     
     if trialNo ~= length(ConditionOrder)
         if (ConditionOrder(2,trialNo+1) < 9 && ConditionOrder(2,trialNo) == 9)
@@ -92,7 +97,7 @@ end
 toc
 Screen('DrawText', window, sprintf( '%s', 'Study is over. Thanks for your participation! ' ), xCenter-400, yCenter,[0 0 0]);
 Screen('Flip',window);
-WaitSecs(2);
+WaitSecs(1);
 KbStrokeWait;
 Screen('CloseAll');
 EndTime = datestr(now);

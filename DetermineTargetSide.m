@@ -1,4 +1,4 @@
-function [Accuracy,RT,ImageList]=DetermineTargetSide(Content,TargetSide,Match,EmotionType,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation)% Clear the workspace and the screen
+function [Accuracy,RT,ImageList,endGame]=DetermineTargetSide(Content,TargetSide,Match,EmotionType,window,xCenter, yCenter, baseRect, squareXpos, numSquares,rightkey, leftkey,endcode,simulation)% Clear the workspace and the screen
 
 % determine target and fixation cross durations below
 arrowDur=.2;
@@ -118,12 +118,13 @@ while Accuracy > 1
     end
     Screen('Flip', window); ProbeOnset=GetSecs;
     if simulation == 0
-        [Accuracy,RT]=DetermineResponse(window,rightkey, leftkey,endcode,ProbeOnset,Match,xCenter, yCenter);
-        if Accuracy < 9
+        [Accuracy,RT,endGame]=DetermineResponse(window,rightkey,leftkey,endcode,ProbeOnset,Match,xCenter, yCenter);
+        if (Accuracy < 9 || endGame == 1)
             break;
         end
     elseif simulation == 1
-        [Accuracy,RT]=SimulateResponse(ProbeOnset,Match); 
+        endGame=0;
+        [Accuracy,RT]=SimulateResponse(ProbeOnset,Match);
     end
 end
 

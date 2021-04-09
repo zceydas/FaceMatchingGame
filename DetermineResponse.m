@@ -1,4 +1,5 @@
-function [Accuracy,RT]=DetermineResponse(window,rightkey, leftkey,endcode,ProbeOnset,Match,xCenter, yCenter)
+function [Accuracy,RT,endGame]=DetermineResponse(window,rightkey, leftkey,endcode,ProbeOnset,Match,xCenter, yCenter)
+endGame=0;
 while KbCheck;
 end;
 while 1
@@ -13,42 +14,40 @@ while 1
             end  
             break;
         else
-            answer=1;
             Screen('DrawText', window, sprintf( '%s', 'Press ESC to quit or press a key to continue.' ), xCenter-400, yCenter,[0 0 0]); 
             Screen('Flip',window);
-            WaitSecs(1)
             while KbCheck;
             end;
             while 1
                 [keyIsDown,TimeStamp,keyCode] = KbCheck;
                 if keyIsDown
                     if (keyCode(endcode))
-                        Screen('DrawText', window, sprintf( '%s', 'Study is over. Thanks for your participation! ' ), xCenter-400, yCenter,[0 0 0]); 
-                        Screen('Flip',window);
-                        WaitSecs(2);
-                        Screen('CloseAll');
-                        ListenChar(0);
-                    elseif (~keyCode(endcode))
-                        break;
+                        endGame=1; answer=1; 
+                    else
+                        answer = 9;
                     end
+                    break;
                 end
             end
         end
-        while KbCheck;end; % wait until key is released.
+       while KbCheck;end; % wait until key is released.
     end
 end
-
-if answer < 9
-    if Match == 1 && matchresponse == 1
-        Accuracy = 1;
-    elseif Match == 0 && matchresponse == 0
-        Accuracy = 1;
+if endGame < 1
+    if answer < 9
+        if Match == 1 && matchresponse == 1
+            Accuracy = 1;
+        elseif Match == 0 && matchresponse == 0
+            Accuracy = 1;
+        else
+            Accuracy = 0;
+        end
     else
-        Accuracy = 0;
+        RT=999;
+        Accuracy = 9;
     end
 else
-    RT=999;
-    Accuracy = 9;
+    Accuracy = 0; RT=999; 
 end
-    
+
 
