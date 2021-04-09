@@ -1,12 +1,12 @@
 
 The task design is an adapted version of the design used in Stout et al., 2015. 
 
-In this task, participant's task is to decide whether a face stimulus changed between screens or not. 
+In this task, participant's task is to decide whether a valenced face stimulus changed between screens or not. 
 On each trial, participant first attends to the left/right hemifield of the screen based on the arrow prompt.
 Next, 4 stimuli appear on each quadrant of the screen. Participant's task is to find the face stimulus on the attended side
 of the screen.
 The distractors (unattended stimuli) are either alcoholic or non-alcoholic beverage images.
-There are 120 trials in each emotion condition, making a total of 360 test trials.
+There are 120 trials in each emotion (neutral/joy/fear) condition, making a total of 360 test trials.
 There are 24 practice trials. 
 
 Face Stimuli were selected from NimStim database and includes 6 female, 6 male faces with Neutral/joy/fear emotions.
