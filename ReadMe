@@ -15,3 +15,5 @@ The face stimuli have been turned to black and white, cropped and the white back
 The distractor images have been retrieved from chosen from the International Affective Picture System (IAPS).
 All pictures have been turned to black and white and matched the face stimuli in terms of entropy (image complexity of grey scale images).
 
+In order to play the game, Download the FaceMatchingGame folder. Open DetermineCondition.m on Matlab and run. Psychtoolbox required. 
+
