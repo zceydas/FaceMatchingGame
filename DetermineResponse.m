@@ -8,7 +8,7 @@ while 1
             if (keyCode(leftkey)); matchresponse=0; RT=GetSecs-ProbeOnset; answer=1;  end
             if (keyCode(rightkey)); matchresponse=1; RT=GetSecs-ProbeOnset; answer=1;  end
             if (~keyCode(rightkey) && ~keyCode(leftkey))
-                Screen('DrawText', window, sprintf( '%s', 'Only use left or right arrow keys.' ), xCenter-200, yCenter,[0 0 0]);
+                Screen('DrawText', window, sprintf( '%s', 'Only use left or right arrow keys.' ), xCenter-300, yCenter,[0 0 0]);
                 Screen('Flip',window); WaitSecs(1); answer = 9;
             end  
             break;
