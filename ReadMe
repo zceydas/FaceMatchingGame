@@ -16,5 +16,5 @@ The distractor images have been retrieved from chosen from the International Aff
 All pictures have been turned to black and white and matched the face stimuli in terms of entropy (image complexity of grey scale images).
 
 In order to play the game, Download the FaceMatchingGame folder. Navigate to the game folder in Matlab. Drag and drop the DetermineCondition.m on the
-command window or press RUN. Psychtoolbox required. 
+command window. Psychtoolbox required. 
 
