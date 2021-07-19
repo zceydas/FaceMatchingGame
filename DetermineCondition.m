@@ -26,8 +26,17 @@ ConditionOrder=[PracticeOrder ConditionOrder]; % add the practice trials to the 
 % prepare Psychtoolbox screen and keyboard
 KbName('UnifyKeyNames')
 KeyTemp=KbName('KeyNames');
-rightkey = KbName('RightArrow');%'RightArrow';
-leftkey = KbName('LeftArrow');%LeftArrow';
+
+if mod(subjectId,2) == 0
+    responsekey=1;
+    rightkey = KbName('f');% face didn't change
+    leftkey = KbName('j');% face changed
+elseif mod(subjectId,2) == 1
+    responsekey=2;
+    rightkey = KbName('j');% face didn't change
+    leftkey = KbName('f');% face changed
+end
+
 endcode =  KbName('ESCAPE'); %escape key - if you press Escape during the experiment, study will pause until next key stroke
 Screen('Preference', 'SkipSyncTests', 1)
 % Get the screen numbers
@@ -54,7 +63,7 @@ numSquares = length(squareXpos);
 
 
 % start the trial sequence
-InstructionsScreen(window);
+InstructionsScreen(window,responsekey);
 for trialNo=1:length(ConditionOrder(1,:))
     
     Content=[]; TargetSide=[]; Match=[]; EmotionType=[];
