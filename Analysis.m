@@ -4,7 +4,7 @@ Results=readtable('Results1_subject333_10-Aug-2021.xlsx');
 % distractor
 % Match: 0- no match, 1- match
 % Target side: 1 and 2 target top, 3 and 4 target bottom
-
+WM=[]; RTs=[];
 for emo=1:3  
     EmoResults=[]; EmoResults=Results((Results.EmotionType==emo),:);
     for dist=1:3
@@ -19,8 +19,8 @@ for emo=1:3
     end 
 end
 
-WMResults=table(WM(:,1), WM(:,2), WM(:,1), 'VariableNames', {'Neutral','Joy','Fear'}, ...
+WMResults=table(WM(:,1), WM(:,2), WM(:,3), 'VariableNames', {'Neutral','Joy','Fear'}, ...
     'RowNames', {'noDistractor', 'Neutral','Alcohol'})
 
-RTResults=table(RTs(:,1), RTs(:,2), RTs(:,1), 'VariableNames', {'Neutral','Joy','Fear'}, ...
+RTResults=table(RTs(:,1), RTs(:,2), RTs(:,3), 'VariableNames', {'Neutral','Joy','Fear'}, ...
     'RowNames', {'noDistractor', 'Neutral','Alcohol'})
