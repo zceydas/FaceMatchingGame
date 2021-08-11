@@ -63,7 +63,7 @@ numSquares = length(squareXpos);
 
 
 % start the trial sequence
-InstructionsScreen(window,responsekey);
+InstructionsScreenFace(window,responsekey);
 for trialNo=1:length(ConditionOrder(1,:))
     
     Content=[]; TargetSide=[]; Match=[]; EmotionType=[];
