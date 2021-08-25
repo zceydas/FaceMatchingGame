@@ -1,4 +1,5 @@
-Results=readtable('Results1_subject333_10-Aug-2021.xlsx');
+%Results=readtable('Results1_subject333_10-Aug-2021.xlsx');
+
 % emotion type: 1- neutral, 2- Joy, 3- Fear
 % Content type: 1- no distractor, 2- neutral distractor, 3- alcohol
 % distractor
